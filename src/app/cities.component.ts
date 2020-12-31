@@ -18,7 +18,6 @@ export class CitiesComponent {
   data: any = {};
 
   constructor(private http: Http) {
-    console.log('Sad ce data ...');
     this.getTest();
     this.getData();
   }
@@ -30,9 +29,7 @@ export class CitiesComponent {
 
   getTest() {
     this.getData().subscribe(data => {
-      console.log(data);
       this.data = data;
-      console.log('data', this.data)
     })
   }
 }
