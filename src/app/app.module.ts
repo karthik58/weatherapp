@@ -7,6 +7,24 @@ import { AppComponent } from './app.component';
 import { CityComponent } from './city.component';
 import { CitiesComponent } from './cities.component';
 
+const routes: Routes = [
+  {
+    // Going to the app root will redirect to cities component
+    path: '',
+    redirectTo: '/cities',
+    pathMatch: 'full'
+  },
+  {
+    path: 'city/:id',
+    component: CityComponent
+  },
+
+  {
+    path: 'cities',
+    component: CitiesComponent
+  },
+];
+
 @NgModule({
   declarations: [
     AppComponent, CityComponent, CitiesComponent
@@ -15,24 +33,7 @@ import { CitiesComponent } from './cities.component';
     BrowserModule,
     HttpModule,
     // Defined routes: cities is a list of cities, city is extended forecast for the given city
-    RouterModule.forRoot([
-       {
-        // Going to the app root will redirect to cities component
-        path: '',
-        redirectTo: '/cities',
-        pathMatch: 'full'
-      },
-      {
-        path: 'city/:id',
-        component: CityComponent
-      },
-
-      {
-        path: 'cities',
-        component: CitiesComponent
-      },
-
-    ])
+    RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [],
   bootstrap: [AppComponent]
