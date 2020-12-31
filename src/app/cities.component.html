@@ -1,0 +1,47 @@
+<div class="container">
+  <h2 style="text-align:left;float:left;">Weather - European Cities </h2>
+  <h3 style="text-align:right;float:right;">{{today | date:'fullDate'}}</h3>
+</div>
+
+<div class="wrapper">
+  <div class="Rtable Rtable--5cols Rtable--collapse">
+    <div class="Rtable-row Rtable-row--head">
+      <div class="Rtable-cell date-cell column-heading">
+        <h3>Cityname</h3>
+      </div>
+      <div class="Rtable-cell topic-cell column-heading">
+        <h3>Sunrise</h3>
+      </div>
+      <div class="Rtable-cell topic-cell column-heading">
+        <h3>Sunset</h3>
+      </div>
+    </div>
+    <div class="Rtable-row" *ngFor="let city of data.list">
+      <div class="Rtable-cell date-cell">
+        <div class="Rtable-cell--content date-content">
+          <span class="webinar-date">
+            <img src="https://openweathermap.org/img/w/{{city.weather[0].icon}}.png" class="forecast-icon"
+              alt="forecast">
+            <a [routerLink]="['/city', city.id]">{{city.name}}</a>
+          </span>
+        </div>
+      </div>
+      <div class="Rtable-cell topic-cell">
+        <div class="Rtable-cell--content title-content">
+          <img src="assets/img/sunrise.png" class="forecast-icon" alt="forecast" height="50px" width="50px">
+          <p class="card-title" *ngIf="city.sys.timezone>=0">
+            {{city.sys.sunrise * 1000 | date: 'short':'+'+(city.sys.timezone/3600)}}
+          </p>
+        </div>
+      </div>
+      <div class="Rtable-cell topic-cell">
+        <div class="Rtable-cell--content title-content">
+          <img src="assets/img/sunset.png" class="forecast-icon" alt="forecast" height="50px" width="50px">
+          <p class="card-title" *ngIf="city.sys.timezone>=0">
+            {{city.sys.sunset * 1000 | date: 'short':'+'+(city.sys.timezone/3600)}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

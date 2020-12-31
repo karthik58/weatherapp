@@ -1,0 +1,40 @@
+<div style="text-align:center">
+  <h1>
+    Weather Details
+  </h1>
+</div>
+<div id="cityCont" class="container">
+  <button (click)="goBack()" class="btn btn-secondary">GoBack</button>
+  <h2 *ngIf="dataCity.city" style="display: inline-block;">
+    <img src="https://openweathermap.org/img/w/{{dataCity.list[0].weather[0].icon}}.png" class="forecast-icon"
+      alt="forecast">
+    {{dataCity.list[0].weather[0].description}} in {{dataCity.city.name}}, {{dataCity.city.country}}
+  </h2>
+  <p style="display: inline-block;">Extended Sea Level forecast in the next 5 days</p>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="forecast-info">At (date-time)</th>
+          <th class="forecast-info">Sea Level</th>
+          <th class="forecast-info">Temperature min/max (C)</th>
+          <th class="forecast-info">Humidity</th>
+          <th class="forecast-info">Forecast</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cityForecast of newArr">
+          <td class="forecast-info forecast-0">{{cityForecast.dt_txt}}</td>
+          <td class="forecast-info forecast-3">{{cityForecast.main.sea_level}}</td>
+          <td class="forecast-info forecast-1">{{cityForecast.main.temp_min}}/{{cityForecast.main.temp_max}}</td>
+          <td class="forecast-info forecast-3">{{cityForecast.main.humidity}}</td>
+          <td class="forecast-info forecast-4"><img
+              src="https://openweathermap.org/img/w/{{cityForecast.weather[0].icon}}.png" class="forecast-icon"
+              alt="forecast"></td>
+          <td class="forecast-info forecast-4">{{cityForecast.weather[0].description}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
